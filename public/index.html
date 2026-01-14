@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Robot Verse</title>
+  <style>
+    /* Global styles for the page */
+    body {
+        font-family: sans-serif;
+        margin: 20px;
+    }
+    h1 {
+        color: #333;
+    }
+
+    /* --- Vertical Move Example --- */
+    .image-contain {
+      /* Define the area where the animation happens */
+      width: 100%;
+      height: 300px; /* Set a specific height for the container */
+      overflow: hidden; /* Hides the image when it moves outside the container */
+      position: relative; /* Essential for positioning the absolute image inside */
+      border: 1px solid #ccc; /* Optional: adds a border so you can see the container area */
+      margin-bottom: 40px;
+    }
+
+    .vertical-image {
+      position: absolute; /* Allows precise positioning relative to the container */
+      width: 50px; /* Set a fixed size for the image within this container */
+      animation: verticalMove 5s linear infinite alternate; /* Apply the animation */
+    }
+
+    /* Define the animation movement for the vertical image */
+    @keyframes verticalMove {
+      /* Starts at the top of the container */
+      from {
+        top: 0;
+      }
+      /* Moves to the bottom of the container. Note: 100% moves the TOP of the image to the bottom. */
+      to {
+        top: calc(100% - 50px); /* Adjust to stop the whole image from going off-screen */
+      }
+    }
+
+    /* --- Horizontal Slide Example --- */
+    .moving-image {
+        position: relative; /* Required for 'top', 'left', etc. to work */
+        width: 100px; /* Set a fixed size for this image */
+        animation-name: slide-animation;
+        animation-duration: 4s;
+        animation-iteration-count: infinite; /* Makes it loop forever */
+        animation-timing-function: linear;
+        margin-top: 20px;
+        margin-bottom: 40px;
+    }
+
+    @keyframes slide-animation {
+      0% {
+        left: 0px; /* Start position */
+      }
+      100% {
+        left: calc(100% - 100px); /* Adjust to stop the whole image from going off-screen */
+      }
+    }
+
+    /* --- Flexbox Layout Example --- */
+    .container {
+      display: flex;       /* Activates Flexbox layout */
+      align-items: center; /* Vertically centers the items */
+      gap: 20px;           /* Adds space between the image and paragraph */
+      border-top: 1px solid #ccc;
+      padding-top: 20px;
+    }
+    .container img {
+      /* Optional: Sets the image size */
+      width: 150px;
+      height: auto;
+    }
+  </style>
+</head>
+<body>
+  <h1>Robot Verse</h1>
+
+  <h2>Vertical Movement Example</h2>
+  <div class="image-contain">
+    <!-- Note: You need a file named 'logo192.png' in the same folder for this to work -->
+    <img class="vertical-image" src="logo192.png" alt="Moving image">
+  </div>
+
+  <h2>Horizontal Slide Example</h2>
+  <!-- Note: You need a file named 'logo192.png' in the same folder for this to work -->
+  <img class="moving-image" src="logo192.png" alt="Sliding image">
+
+  <h2>Flexbox Layout Example (Static)</h2>
+  <div class="container">
+    <!-- Note: You need a file named 'logo192.png' in the same folder for this to work -->
+    <img src="logo192.png" alt="Static robot image">
+    <p>This is a paragraph next to the image, aligned nicely in the middle using CSS Flexbox properties.</p>
+  </div>
+
+</body>
+</html>

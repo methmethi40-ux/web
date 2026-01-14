@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>T-M-B-S Producers</title>
+  <link rel="icon" href="logo.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="style.css" />
+  <!-- Firebase compat SDKs (stable for static hosts) -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.3/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.3/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.3/firebase-firestore-compat.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="left-top">
+      <img src="logo.svg" alt="T-M-B-S" class="logo-small"/>
+      <div class="brand-title">T-M-B-S <span>Producers</span></div>
+    </div>
+
+    <div class="top-search">
+      <input id="searchInput" placeholder="Search videos, channels, articles..." />
+    </div>
+
+    <div class="right-top">
+      <div id="userInfo" class="user-info" style="display:none">
+        <img id="userPic" class="avatar" src="" alt="user" />
+        <span id="userName"></span>
+      </div>
+      <button id="authBtn" class="btn primary">Sign In</button>
+    </div>
+  </header>
+
+  <div class="app-shell">
+    <aside class="leftbar">
+      <nav>
+        <button class="nav-btn" data-section="home">Home</button>
+        <button class="nav-btn" data-section="upload">Upload Studio</button>
+        <button class="nav-btn" data-section="channels">My Channel</button>
+        <button class="nav-btn" data-section="library">Library</button>
+        <button class="nav-btn" data-section="admin" id="adminBtn" style="display:none">Admin</button>
+      </nav>
+
+      <div class="categories">
+        <h4>Categories</h4>
+        <ul id="categoryList">
+          <li data-cat="all" class="cat active">All</li>
+          <li data-cat="art" class="cat">Art</li>
+          <li data-cat="robotics" class="cat">Robotics</li>
+          <li data-cat="music" class="cat">Music</li>
+          <li data-cat="software" class="cat">Software Dev</li>
+          <li data-cat="design" class="cat">Graphic Design</li>
+          <li data-cat="animation" class="cat">Animation</li>
+          <li data-cat="gaming" class="cat">Gaming</li>
+          <li data-cat="writing" class="cat">Writing</li>
+        </ul>
+      </div>
+    </aside>
+
+    <main class="main">
+      <!-- HERO / FEED -->
+      <section id="home" class="section active">
+        <div class="hero-card">
+          <h1>Discover creators & new media</h1>
+          <p>Accessible, colorful, and community-driven — create a channel and share your work.</p>
+          <div class="hero-actions">
+            <button id="getStartedBtn" class="btn primary">Get Started</button>
+            <button id="learnBtn" class="btn ghost">Learn More</button>
+          </div>
+        </div>
+
+        <div class="feed container" id="feed"></div>
+      </section>
+
+      <!-- UPLOAD -->
+      <section id="upload" class="section">
+        <div class="upload-card glass-card">
+          <h2>Upload Studio</h2>
+
+          <div id="noChannelNotice" class="channel-warning" style="display:none">
+            <p><strong>Create a channel</strong> before uploading. <button id="createChannelBtn" class="btn small">Create Channel</button></p>
+          </div>
+
+          <form id="uploadForm" style="display:none" onsubmit="return false;">
+            <label>Title</label>
+            <input id="titleInput" type="text" placeholder="Title" />
+
+            <label>Description</label>
+            <textarea id="descInput" rows="3" placeholder="Description"></textarea>
+
+            <label>Category</label>
+            <select id="categorySelect">
+              <option value="art">Art</option>
+              <option value="robotics">Robotics</option>
+              <option value="music">Music</option>
+              <option value="software">Software Development</option>
+              <option value="design">Graphic Design</option>
+              <option value="animation">Animation</option>
+              <option value="gaming">Gaming</option>
+              <option value="writing">Writing</option>
+            </select>
+
+            <label>File</label>
+            <input id="fileInput" type="file" accept="video/*,image/*,audio/*,.srt" />
+
+            <div class="progress-wrap" style="display:none;">
+              <div id="progressBar" class="progress-bar"></div>
+              <div id="progressText" class="progress-text">0%</div>
+            </div>
+
+            <div class="form-actions">
+              <button id="uploadBtn" class="btn primary" type="button">Upload</button>
+              <button id="cancelUploadBtn" class="btn ghost" type="button">Cancel</button>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <!-- CHANNEL -->
+      <section id="channels" class="section">
+        <div class="glass-card">
+          <h2>My Channel</h2>
+          <div id="myChannelInfo" style="min-height:80px">Not signed in.</div>
+          <div id="myUploads" class="cards"></div>
+        </div>
+      </section>
+
+      <!-- LIBRARY -->
+      <section id="library" class="section">
+        <div class="glass-card">
+          <h2>Library</h2>
+          <p>Saved content and drafts will appear here.</p>
+        </div>
+      </section>
+
+      <!-- ADMIN -->
+      <section id="admin" class="section">
+        <div class="glass-card">
+          <h2>Admin Panel</h2>
+          <p>Master admin controls.</p>
+          <div id="adminList"></div>
+        </div>
+      </section>
+    </main>
+
+    <aside class="rightbar">
+      <div class="right-card">
+        <h4>Trending</h4>
+        <ul id="trendingList"></ul>
+      </div>
+      <div class="right-card">
+        <h4>Quick Links</h4>
+        <button id="openUploadBtn" class="btn small">Open Upload Studio</button>
+      </div>
+    </aside>
+  </div>
+
+  <footer class="footer">© 2025 T-M-B-S Producers</footer>
+
+  <!-- Firebase init (globals: auth, db) -->
+  <script src="firebase.js" defer></script>
+  <!-- App logic -->
+  <script src="app.js" defer></script>
+  <script src="upload.js" defer></script>
+  <script src="admin.js" defer></script>
+</body>
+</html>
