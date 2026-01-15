@@ -1,4 +1,3 @@
-let animals = [];
 let page = 1;
 const perPage = 12;
 
@@ -12,17 +11,6 @@ const modalImg = document.getElementById("modal-img");
 const modalDesc = document.getElementById("modal-desc");
 const closeModal = document.getElementById("close-modal");
 
-const files = ["data/animals-001.json", "data/animals-002.json"];
-
-// Load JSON data
-Promise.all(files.map(f => fetch(f).then(r => r.json())))
-  .then(data => {
-    animals = data.flat();
-    render();
-  })
-  .catch(err => console.error("Error loading data:", err));
-
-// Render cards
 function render() {
   grid.innerHTML = "";
   const term = search.value.toLowerCase();
@@ -52,19 +40,17 @@ document.getElementById("prev").onclick = () => { if(page>1) page--; render(); }
 // Search
 search.oninput = () => { page = 1; render(); };
 
-// Open animal modal
+// Modal functions
 function openAnimal(id) {
-  fetch(`/robot-verse/data/details/${id}.json`)
-    .then(r => r.json())
-    .then(d => {
-      modalName.textContent = d.name;
-      modalImg.src = d.image;
-      modalDesc.textContent = d.description;
-      modal.style.display = "flex";
-    })
-    .catch(err => alert("Animal details not found."));
+  const a = animals.find(x => x.id === id);
+  modalName.textContent = a.name;
+  modalImg.src = a.image;
+  modalDesc.textContent = a.description;
+  modal.style.display = "flex";
 }
 
-// Close modal
 closeModal.onclick = () => { modal.style.display = "none"; };
 window.onclick = e => { if(e.target === modal) modal.style.display = "none"; };
+
+// Initial render
+render();
