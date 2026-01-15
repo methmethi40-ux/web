@@ -1,13 +1,12 @@
-* {
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
 body {
   margin: 0;
   font-family: "Segoe UI", sans-serif;
+  color: #fff;
   background: url("../images/jungle-bg.png") repeat-x;
   animation: bgMove 60s linear infinite;
-  color: #fff;
+  overflow-x: hidden;
 }
 
 @keyframes bgMove {
@@ -18,12 +17,13 @@ body {
 header {
   text-align: center;
   padding: 20px;
-  backdrop-filter: blur(10px);
   background: rgba(0,0,0,0.4);
+  backdrop-filter: blur(6px);
 }
 
 header h1 {
   font-size: 3rem;
+  margin: 0 0 10px 0;
 }
 
 #search {
@@ -37,7 +37,7 @@ header h1 {
 
 #animal-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
   gap: 20px;
   padding: 30px;
 }
@@ -57,11 +57,6 @@ header h1 {
   box-shadow: 0 0 30px rgba(0,255,150,0.8);
 }
 
-@keyframes float {
-  0%,100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
-}
-
 .animal-card img {
   width: 100%;
   border-radius: 12px;
@@ -78,4 +73,9 @@ footer button {
   border: none;
   font-size: 1rem;
   cursor: pointer;
+}
+
+@keyframes float {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
 }
