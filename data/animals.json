@@ -1,0 +1,16 @@
+[
+  {
+    "id": "animal1",
+    "name": "Tiger",
+    "region": "Asia",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/5/56/Tiger.50.jpg",
+    "brief": "The tiger is the largest cat species in the world."
+  },
+  {
+    "id": "animal2",
+    "name": "Elephant",
+    "region": "Africa & Asia",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/3/37/African_Bush_Elephant.jpg",
+    "brief": "Elephants are the largest land animals on Earth."
+  }
+]

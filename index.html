@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <title>AnimalVerse 🐾</title>
   <link rel="stylesheet" href="css/style.css">
-  <script src="js/data.js" defer></script>
+  <script src="data/animals.json" defer></script>
   <script src="js/main.js" defer></script>
 </head>
 <body>
@@ -18,21 +18,14 @@
   <div id="animal-grid"></div>
 </main>
 
-<footer>
-  <button id="prev">⬅ Prev</button>
-  <span id="page-info"></span>
-  <button id="next">Next ➡</button>
-</footer>
-
-<!-- Modal -->
+<!-- Modal for brief info -->
 <div id="animal-modal" class="modal">
   <div class="modal-content">
     <span id="close-modal">&times;</span>
     <h2 id="modal-name"></h2>
     <img id="modal-img" alt="">
-    <div id="modal-desc-container">
-      <p id="modal-desc"></p>
-    </div>
+    <p id="modal-brief"></p>
+    <a id="more-info-btn" href="">More Info ➡</a>
   </div>
 </div>
 
