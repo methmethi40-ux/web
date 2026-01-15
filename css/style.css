@@ -4,7 +4,7 @@ body {
   margin: 0;
   font-family: "Segoe UI", sans-serif;
   color: #fff;
-  background: url("../images/jungle-bg.png") repeat-x;
+  background: url("images\jungle-bg.png.jpeg") repeat-x;
   animation: bgMove 60s linear infinite;
   overflow-x: hidden;
 }
