@@ -1,80 +1,81 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
-  color: #fff;
-  overflow-x: hidden;
-}
-
-/* BACKGROUND */
-.jungle-wrapper {
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  overflow: hidden;
-}
-.jungle-layer {
-  width: 200%;
-  height: 100%;
+  font-family: "Segoe UI", sans-serif;
   background: url("../images/jungle-bg.png") repeat-x;
-  background-size: auto 100%;
-  animation: scroll 60s linear infinite;
-}
-@keyframes scroll {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
+  animation: bgMove 60s linear infinite;
+  color: #fff;
 }
 
-h1 {
-  text-align: center;
-  margin-top: 20px;
+@keyframes bgMove {
+  from { background-position: 0 0; }
+  to { background-position: -3000px 0; }
 }
 
-.search-box {
+header {
   text-align: center;
-  margin: 20px;
+  padding: 20px;
+  backdrop-filter: blur(10px);
+  background: rgba(0,0,0,0.4);
 }
-input {
+
+header h1 {
+  font-size: 3rem;
+}
+
+#search {
   padding: 10px;
-  width: 300px;
-  border-radius: 10px;
+  width: 260px;
+  border-radius: 20px;
   border: none;
+  outline: none;
+  font-size: 1rem;
 }
 
-/* GRID */
-.grid {
+#animal-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 20px;
+  padding: 30px;
+}
+
+.animal-card {
+  background: rgba(255,255,255,0.15);
+  border-radius: 16px;
+  padding: 15px;
+  text-align: center;
+  cursor: pointer;
+  animation: float 4s ease-in-out infinite;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.animal-card:hover {
+  transform: scale(1.08);
+  box-shadow: 0 0 30px rgba(0,255,150,0.8);
+}
+
+@keyframes float {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.animal-card img {
+  width: 100%;
+  border-radius: 12px;
+}
+
+footer {
+  text-align: center;
   padding: 20px;
 }
 
-/* CARD */
-.card {
-  background: rgba(255,255,255,0.9);
-  color: #000;
-  border-radius: 15px;
-  overflow: hidden;
-}
-.card img {
-  width: 100%;
-  height: 180px;
-  object-fit: cover;
-}
-.card-content {
-  padding: 10px;
-}
-.card button {
-  width: 100%;
-  padding: 8px;
+footer button {
+  padding: 10px 20px;
+  border-radius: 20px;
   border: none;
-  background: #4caf50;
-  color: white;
+  font-size: 1rem;
   cursor: pointer;
-  border-radius: 8px;
-}
-
-/* PAGINATION */
-.pagination {
-  text-align: center;
-  margin-bottom: 30px;
 }

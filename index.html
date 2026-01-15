@@ -1,31 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>AnimalVerse</title>
-<link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8">
+  <title>AnimalVerse</title>
+
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/main.js" defer></script>
 </head>
+
 <body>
 
-<!-- LOOPING JUNGLE BACKGROUND -->
-<div class="jungle-wrapper">
-  <div class="jungle-layer"></div>
-</div>
+  <header>
+    <h1>🌿 AnimalVerse</h1>
+    <input id="search" type="text" placeholder="Search animals...">
+  </header>
 
-<h1>🌳 AnimalVerse</h1>
+  <main>
+    <div id="animal-grid"></div>
+  </main>
 
-<div class="search-box">
-  <input type="text" placeholder="Search animals..." onkeyup="searchAnimals(this.value)">
-</div>
+  <footer>
+    <button id="prev">⬅ Prev</button>
+    <span id="page-info"></span>
+    <button id="next">Next ➡</button>
+  </footer>
 
-<div class="grid" id="animalGrid"></div>
-
-<div class="pagination">
-  <button onclick="prevPage()">◀</button>
-  <span id="pageText"></span>
-  <button onclick="nextPage()">▶</button>
-</div>
-
-<script src="js/main.js"></script>
 </body>
 </html>

@@ -1,18 +1,14 @@
 [
   {
     "id": "tiger",
-    "name": "Bengal Tiger",
-    "image": "https://upload.wikimedia.org/wikipedia/commons/5/56/Tiger.50.jpg",
+    "name": "Tiger",
     "region": "Asia",
-    "diet": "Carnivore",
-    "search": "tiger bengal asia carnivore"
+    "image": "https://upload.wikimedia.org/wikipedia/commons/5/56/Tiger.50.jpg"
   },
   {
     "id": "elephant",
-    "name": "Asian Elephant",
-    "image": "https://upload.wikimedia.org/wikipedia/commons/6/63/Asian_elephant.jpg",
-    "region": "Asia",
-    "diet": "Herbivore",
-    "search": "elephant asia herbivore"
+    "name": "Elephant",
+    "region": "Africa & Asia",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/3/37/African_Bush_Elephant.jpg"
   }
 ]

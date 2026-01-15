@@ -1,27 +1,29 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Animal Info</title>
-<link rel="stylesheet" href="../css/style.css">
+  <meta charset="UTF-8">
+  <title>Animal Info</title>
+  <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
 
-<h1 id="name"></h1>
-<img id="img" style="width:300px">
-<p id="desc"></p>
-<iframe id="vid" width="400" height="250"></iframe>
+<div style="padding:30px; text-align:center;">
+  <h1 id="name"></h1>
+  <img id="img" style="max-width:400px; border-radius:16px;">
+  <p id="desc"></p>
+  <button onclick="history.back()">⬅ Back</button>
+</div>
 
 <script>
-const id = new URLSearchParams(location.search).get("id");
+const params = new URLSearchParams(location.search);
+const id = params.get("animal");
 
 fetch(`../data/details/${id}.json`)
-  .then(r=>r.json())
-  .then(a=>{
-    document.getElementById("name").innerText = a.name;
-    document.getElementById("img").src = a.image;
-    document.getElementById("desc").innerText = a.description;
-    document.getElementById("vid").src = a.video;
+  .then(r => r.json())
+  .then(d => {
+    document.getElementById("name").textContent = d.name;
+    document.getElementById("img").src = d.image;
+    document.getElementById("desc").textContent = d.description;
   });
 </script>
 

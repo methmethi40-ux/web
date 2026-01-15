@@ -1,51 +1,59 @@
-let allAnimals = [];
-let filtered = [];
-let page = 0;
+let animals = [];
+let page = 1;
 const perPage = 6;
-const files = ["animals-001.json", "animals-002.json"];
 
-// LOAD DATA
-Promise.all(files.map(f => fetch(`data/${f}`).then(r=>r.json())))
-  .then(data => {
-    allAnimals = data.flat();
-    filtered = allAnimals;
-    render();
-  });
+const grid = document.getElementById("animal-grid");
+const search = document.getElementById("search");
+const pageInfo = document.getElementById("page-info");
 
-function render(){
-  const grid = document.getElementById("animalGrid");
-  grid.innerHTML = "";
-
-  const start = page * perPage;
-  const end = start + perPage;
-
-  filtered.slice(start,end).forEach(a=>{
-    grid.innerHTML += `
-      <div class="card">
-        <img src="${a.image}">
-        <div class="card-content">
-          <h3>${a.name}</h3>
-          <p>${a.region} • ${a.diet}</p>
-          <button onclick="openAnimal('${a.id}')">More Info</button>
-        </div>
-      </div>
-    `;
-  });
-
-  document.getElementById("pageText").innerText =
-    `Page ${page+1} / ${Math.ceil(filtered.length/perPage)}`;
-}
-
-function nextPage(){ page++; render(); }
-function prevPage(){ if(page>0){ page--; render(); } }
-
-function searchAnimals(v){
-  v = v.toLowerCase();
-  filtered = allAnimals.filter(a=>a.search.includes(v));
-  page = 0;
+Promise.all([
+  fetch("data/animals-001.json").then(r => r.json()),
+  fetch("data/animals-002.json").then(r => r.json())
+]).then(data => {
+  animals = data.flat();
   render();
+});
+
+function render() {
+  grid.innerHTML = "";
+  const term = search.value.toLowerCase();
+
+  const filtered = animals.filter(a =>
+    a.name.toLowerCase().includes(term)
+  );
+
+  const start = (page - 1) * perPage;
+  const paginated = filtered.slice(start, start + perPage);
+
+  paginated.forEach(a => {
+    const card = document.createElement("div");
+    card.className = "animal-card";
+    card.innerHTML = `
+      <img src="${a.image}">
+      <h3>${a.name}</h3>
+      <p>${a.region}</p>
+    `;
+    card.onclick = () => {
+      window.location.href =
+        `animal-pages/animal.html?animal=${a.id}`;
+    };
+    grid.appendChild(card);
+  });
+
+  pageInfo.textContent = `Page ${page}`;
 }
 
-function openAnimal(id){
-  window.location.href = `animal-pages/animal.html?id=${id}`;
-}
+search.oninput = () => {
+  page = 1;
+  render();
+};
+
+document.getElementById("next").onclick = () => {
+  page++;
+  render();
+};
+
+document.getElementById("prev").onclick = () => {
+  if (page > 1) page--;
+  render();
+};
