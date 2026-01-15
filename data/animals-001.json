@@ -1,0 +1,18 @@
+[
+  {
+    "id": "tiger",
+    "name": "Bengal Tiger",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/5/56/Tiger.50.jpg",
+    "region": "Asia",
+    "diet": "Carnivore",
+    "search": "tiger bengal asia carnivore"
+  },
+  {
+    "id": "elephant",
+    "name": "Asian Elephant",
+    "image": "https://upload.wikimedia.org/wikipedia/commons/6/63/Asian_elephant.jpg",
+    "region": "Asia",
+    "diet": "Herbivore",
+    "search": "elephant asia herbivore"
+  }
+]

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>AnimalVerse</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- LOOPING JUNGLE BACKGROUND -->
+<div class="jungle-wrapper">
+  <div class="jungle-layer"></div>
+</div>
+
+<h1>🌳 AnimalVerse</h1>
+
+<div class="search-box">
+  <input type="text" placeholder="Search animals..." onkeyup="searchAnimals(this.value)">
+</div>
+
+<div class="grid" id="animalGrid"></div>
+
+<div class="pagination">
+  <button onclick="prevPage()">◀</button>
+  <span id="pageText"></span>
+  <button onclick="nextPage()">▶</button>
+</div>
+
+<script src="js/main.js"></script>
+</body>
+</html>

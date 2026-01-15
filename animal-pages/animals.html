@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Animal Info</title>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<h1 id="name"></h1>
+<img id="img" style="width:300px">
+<p id="desc"></p>
+<iframe id="vid" width="400" height="250"></iframe>
+
+<script>
+const id = new URLSearchParams(location.search).get("id");
+
+fetch(`../data/details/${id}.json`)
+  .then(r=>r.json())
+  .then(a=>{
+    document.getElementById("name").innerText = a.name;
+    document.getElementById("img").src = a.image;
+    document.getElementById("desc").innerText = a.description;
+    document.getElementById("vid").src = a.video;
+  });
+</script>
+
+</body>
+</html>
