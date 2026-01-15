@@ -8,20 +8,30 @@
 </head>
 <body>
 
-  <header>
-    <h1>🌿 AnimalVerse</h1>
-    <input id="search" type="text" placeholder="Search animals...">
-  </header>
+<header>
+  <h1>🌿 AnimalVerse</h1>
+  <input id="search" type="text" placeholder="Search animals...">
+</header>
 
-  <main>
-    <div id="animal-grid"></div>
-  </main>
+<main>
+  <div id="animal-grid"></div>
+</main>
 
-  <footer>
-    <button id="prev">⬅ Prev</button>
-    <span id="page-info"></span>
-    <button id="next">Next ➡</button>
-  </footer>
+<footer>
+  <button id="prev">⬅ Prev</button>
+  <span id="page-info"></span>
+  <button id="next">Next ➡</button>
+</footer>
+
+<!-- Modal for animal details -->
+<div id="animal-modal" class="modal">
+  <div class="modal-content">
+    <span id="close-modal">&times;</span>
+    <h2 id="modal-name"></h2>
+    <img id="modal-img" alt="">
+    <p id="modal-desc"></p>
+  </div>
+</div>
 
 </body>
 </html>
